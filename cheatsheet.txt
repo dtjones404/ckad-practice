@@ -16,3 +16,19 @@ k describe pods
 *get describe results, 5 lines around grep match
 k describe pods | grep -C 5 name=myapp
 
+*create a pod called hazelcast, using hazelcast image, port 5701, listed labels and env variables.
+k run hazelcast --image=hazelcast/hazelcast --restart=Never --port=5701 
+  --env="DNS_DOMAIN=cluster" --labels="app=hazelcast,env=prod"
+
+*get logs from pod hazelcast
+k logs hazelcast
+
+*run command "env" on pod hazelcast
+k exec hazelcast -- env
+
+*opens a shell on pod hazelcast with interactive terminal ("it")
+k exec -it hazelcast -- /bin/sh
+
+*creates a yaml file (pod2.yaml) for a pod using busybox, which will init with listed command (note "dry-run")
+k run mypod --image=busybox -o yaml --dry-run=client --restart=Never
+  > pod2.yaml -- /bin/sh -c "while true; do date; sleep 10; done"
