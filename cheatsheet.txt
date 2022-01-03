@@ -1,0 +1,18 @@
+*create pod from yaml
+k create pod -f pod.yaml
+
+*patch pod myapp from yaml
+k patch pod myapp --patch-file pod.yaml
+
+*kill pod immediately
+k delete pod myapp --grace-period 0 --force
+
+*get detailed info about pod myapp
+k describe pod myapp
+
+*get detailed info about all pods
+k describe pods
+
+*get describe results, 5 lines around grep match
+k describe pods | grep -C 5 name=myapp
+
