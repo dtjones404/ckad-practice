@@ -1,3 +1,9 @@
 k create namespace ckad
 k run nginx --image=nginx:1.17.10 --port=80 -n=ckad
 k describe pod nginx -n=ckad
+k run busybox --image=busybox --restart=Never -it -- wget 10.1.1.132
+k logs nginx -n=ckad
+k run nginx --image=nginx:1.17.10 --port=80 --env="DB_URL=postgres://mydb:5432,DB_USERNAME=admin" -n=ckad
+k exec -it nginx -n=ckad -- /bin/sh
+ls -l
+exit
