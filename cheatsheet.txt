@@ -32,3 +32,4 @@ k exec -it hazelcast -- /bin/sh
 *creates a yaml file (pod2.yaml) for a pod using busybox, which will init with listed command (note "dry-run")
 k run mypod --image=busybox -o yaml --dry-run=client --restart=Never
   > pod2.yaml -- /bin/sh -c "while true; do date; sleep 10; done"
+

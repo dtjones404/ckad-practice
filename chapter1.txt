@@ -7,3 +7,7 @@ k run nginx --image=nginx:1.17.10 --port=80 --env="DB_URL=postgres://mydb:5432,D
 k exec -it nginx -n=ckad -- /bin/sh
 ls -l
 exit
+k create -f loop.yaml
+k logs loop
+k delete pod loop
+k delete ns ckad

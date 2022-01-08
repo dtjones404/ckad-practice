@@ -8,9 +8,14 @@ spec:
   containers:
     - name: loop
       image: busybox
+      args:
+        - '/bin/sh'
+        - '-c'
+        - 'while true; do date; sleep 10; done'
       resources:
         limits:
           memory: '128Mi'
           cpu: '500m'
       ports:
         - containerPort: 81
+  restartPolicy: Never
