@@ -23,6 +23,12 @@ k run hazelcast --image=hazelcast/hazelcast --restart=Never --port=5701
 *get logs from pod hazelcast
 k logs hazelcast
 
+*stream realtime logs from pod hazelcast
+k logs -f hazelcast
+
+*get logs from previous run of pod hazelcast (if it has restarted)
+k logs --previous hazelcast
+
 *run command "env" on pod hazelcast
 k exec hazelcast -- env
 
@@ -33,3 +39,5 @@ k exec -it hazelcast -- /bin/sh
 k run mypod --image=busybox -o yaml --dry-run=client --restart=Never
   > pod2.yaml -- /bin/sh -c "while true; do date; sleep 10; done"
 
+*get list of all recent events in ckad namespace
+k get events -n=ckad
