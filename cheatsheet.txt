@@ -41,3 +41,6 @@ k run mypod --image=busybox -o yaml --dry-run=client --restart=Never
 
 *get list of all recent events in ckad namespace
 k get events -n=ckad
+
+*create configmap named dbconfig, with given literal env pairs
+k create configmap db-config --from-literal=db=staging,password=1234
