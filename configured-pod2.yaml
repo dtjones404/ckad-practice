@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: configured-pod
+spec:
+  containers:
+    - image: nginx:1.19.0
+      name: app
+      env:
+        - name: DB_ENVIRONMENT
+          valueFrom:
+            configMapKeyRef:
+              name: db-config
+              key: db
+        - name: DB_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              name: db-config
+              key: password

@@ -43,4 +43,16 @@ k run mypod --image=busybox -o yaml --dry-run=client --restart=Never
 k get events -n=ckad
 
 *create configmap named dbconfig, with given literal env pairs
-k create configmap db-config --from-literal=db=staging,password=1234
+k create configmap db-config --from-literal=db=staging --from-literal=password=1234
+
+*create configmap named dbconfig, with env pairs from config.env
+k create configmap db-config --from-env-file=config.env
+
+*create configmap named test, with key equal to file name and value equal to file content
+k create configmap test --from-file=password
+
+*create configmap named dbconfig, with env pairs from files in db-config directory
+k create configmap db-config --from-file=db-config
+
+*get env variables from pod configured-pod
+k exec configured-pod -- env
