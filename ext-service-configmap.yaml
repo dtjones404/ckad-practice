@@ -1,0 +1,11 @@
+apiVersion: v1
+data:
+  api_endpoint: https://myapp.com/api
+  username: bot
+kind: ConfigMap
+metadata:
+  creationTimestamp: "2022-01-18T06:22:07Z"
+  name: ext-service-configmap
+  namespace: default
+  resourceVersion: "767888"
+  uid: 2b8e5603-e28f-467c-b589-aecbd0b1407e

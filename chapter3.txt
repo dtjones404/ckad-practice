@@ -4,3 +4,8 @@ echo api_key=LmLHbYhsgWZwNifiqaRorH8T >> config/ext-service.txt
 k create secret generic ext-service-secret --from-file=config -o=yaml
 k create -f consumer.yaml
 k exec -it consumer -- /bin/sh
+exit
+k create cm ext-service-configmap --from-literal=api_endpoint=https://myapp.com/api --from-literal=username=bot -o yaml >> ext-service-configmap.yaml
+k delete pod consumer
+k create -f consumer.yaml
+k exec consumer -- env
