@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: project-firebird-quota
+spec:
+  hard:
+    secrets: '1'

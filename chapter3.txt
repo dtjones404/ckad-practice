@@ -9,3 +9,8 @@ k create cm ext-service-configmap --from-literal=api_endpoint=https://myapp.com/
 k delete pod consumer
 k create -f consumer.yaml
 k exec consumer -- env
+k create -f security-context-demo.yaml
+k create ns project-firebird
+k create -f project-firebird-quota.yaml -n=project-firebird
+k create secret generic sec1 -n=project-firebird --from-file=secret.yaml
+k create sa custom -n=project-firebird
