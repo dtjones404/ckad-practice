@@ -60,14 +60,14 @@ k create configmap db-config --from-file=db-config
 *get env variables from pod "configured-pod"
 k exec configured-pod -- env
 
-*create generic secret called db-creds, containing literal value password=1234
+*create generic secret "db-creds", containing literal value "password=1234"
 k create secret generic db-creds --from-literal=password=1234
 
-*create generic secret called db-creds, containing values from file secret.env
+*create generic secret "db-creds", containing values from file "secret.env"
 k create secret generic db-creds --from-env-file=secret.env
 
-*create generic secret called db-creds, containing key=key and value=contents of fakeKey.txt
+*create generic secret "db-creds", containing key=key and value=contents of "fakeKey.txt"
 k create secret generic db-creds --from-file=key=fakeKey.txt
 
-*create service account called custom, with auto-generated token
+*create service account "custom", with auto-generated token
 k create sa custom
