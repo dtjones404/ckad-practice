@@ -1,0 +1,8 @@
+k create -f complex-pod.yaml
+k logs complex-pod -c init-container
+k exec -it complex-pod -c app -- /bin/sh
+k delete pod complex-pod --force
+k run data-exchange --image=busybox --restart=Never -o yaml --dry-run=client > data-exchange.yaml
+k create -f data-exchange.yaml 
+k logs data-exchange -c sidecar | tail -n 5
+k delete pod data-exchange
