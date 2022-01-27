@@ -13,6 +13,9 @@ k describe pod myapp
 *get detailed info about all pods
 k describe pods
 
+*get summary info about all objects in namespace
+k get all
+
 *get describe results, 5 lines around grep match
 k describe pods | grep -C 5 name=myapp
 
