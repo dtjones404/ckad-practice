@@ -74,3 +74,6 @@ k create secret generic db-creds --from-file=key=fakeKey.txt
 
 *create service account "custom", with auto-generated token
 k create sa custom
+
+*create ephemeral container using "busybox" image to debug distroless "minmal-pod"
+k debug -it minimal-pod --image=busybox
