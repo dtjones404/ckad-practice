@@ -77,3 +77,23 @@ k create sa custom
 
 *create ephemeral container using "busybox" image to debug distroless "minmal-pod"
 k debug -it minimal-pod --image=busybox
+
+*get pods with label information (useful for troubleshooting deployments/services)
+k get pods --show-labels
+
+*get endpoints of service "myservice"
+k get endpoints myservice
+
+*get targetPort of service "myapp"
+k get svc myapp -o yaml | grep targetPort
+
+*get containerPort of pod "myapp"
+k get pod myapp -o yaml | grep containerPort
+
+*get top nodes by resource usage
+k top nodes
+
+*get top "frontend" pod by resource usage
+k top pod frontend
+
+.
