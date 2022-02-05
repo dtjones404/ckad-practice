@@ -1,0 +1,7 @@
+k create -f challenge.yaml
+k get pod web-server
+k describe pod web-server
+k logs -f web-server
+k top pod web-server
+k run custom-cmd --image=busybox --restart=Never -- /bin/sh -c "top-analyzer --all"
+k logs custom-cmd
