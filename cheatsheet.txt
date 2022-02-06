@@ -128,3 +128,16 @@ k create deployment my-depl --image=nginx --replicas=3
 
 *get rollout history for deployment "my-depl"
 k rollout history deploy my-depl
+
+*update deployment "my-depl" by setting image of container "nginx" to "nginx:1.19.2"
+k set image deploy my-depl nginx=nginx:1.19.2
+
+*get status of most recent rollout for deployment "my-depl"
+k rollout status deploy my-depl
+
+*get details of rollout revision 2 for deployment "my-depl"
+k rollout history deployment my-depl --revision=2
+
+*roll back deployment "my-depl" to version 1
+k rollout undo deploy my-depl --to-revision=1
+
