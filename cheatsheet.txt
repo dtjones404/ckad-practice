@@ -141,3 +141,11 @@ k rollout history deployment my-depl --revision=2
 *roll back deployment "my-depl" to version 1
 k rollout undo deploy my-depl --to-revision=1
 
+*scale deployment "my-depl" to 5 pods
+k scale deploy my-depl --replicas=5
+
+*create hpa for deployment "my-depl" with given parameters
+k autoscale deploy my-depl --cpu-percent=70 --min=2 --max=8
+
+*create job "counter" which runs nginx container and runs command given
+k create job counter --image=nginx -- /bin/bash -c 'counter=0; while [ $counter -lt 3 ]; do echo $((++counter)); sleep 3; done'
