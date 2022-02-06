@@ -149,3 +149,6 @@ k autoscale deploy my-depl --cpu-percent=70 --min=2 --max=8
 
 *create job "counter" which runs nginx container and runs command given
 k create job counter --image=nginx -- /bin/bash -c 'counter=0; while [ $counter -lt 3 ]; do echo $((++counter)); sleep 3; done'
+
+*create cronjob "google-ping" which executes curl google.com every 2 minutes using nginx image
+k create cj google-ping --image=nginx --schedule='*/2 * * * *' -- /bin/sh -c 'curl google.com'

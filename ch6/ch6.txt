@@ -1,0 +1,14 @@
+k run pod-1 --image=nginx --labels=team=artemidis,tier=frontend
+k run pod-2 --image=nginx --labels=team=artemidis,tier=backend
+k run pod-3 --image=nginx --labels=team=artemidis,tier=backend
+k annotate pod pod-1 deployer=dtjones
+k annotate pod pod-3 deployer=dtjones
+k get pods -l tier=backend,'team in (artemidis, aircontrol)' --show-labels
+k create deploy server-deployment --image=grand-server:1.4.6 --replicas=2
+k get events
+k set image deploy server-deployment grand-server=nginx
+k rollout history deployment server-deployment --revision=1
+k rollout history deployment server-deployment --revision=2
+k create cj google-ping --image=nginx --schedule='*/2 * * * *' -- /bin/sh -c 'curl google.com'
+k get cj google-ping -w
+k edit cj google-ping
