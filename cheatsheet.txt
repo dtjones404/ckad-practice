@@ -96,4 +96,35 @@ k top nodes
 *get top "frontend" pod by resource usage
 k top pod frontend
 
-.
+*add label "region=eu" to pod "labeled-pod.  Raises error if label "region" already exists
+k label pod labeled-pod region=eu
+
+*upsert label "region" with value "us" for pod "labeled-pod"
+k label pod labeled-pod region=us --overwrite
+
+*delete label "banana" from pod "labeled-pod"
+k label pod labeled-pod banana-
+
+*get pods which have label "env=dev"
+k get pods -l env=dev
+
+*get pods which have label "env=(dev | prod)"
+k get pods -l 'env in (dev, prod)'
+
+*get pods which have label "env=(dev | prod)" AND label "tier=backend"
+k get pods -l 'env in (dev, prod)',tier=backend
+
+*add annotation "oncall=123412341" to pod "annotated-pod.  Raises error if annotation "oncall" already exists
+k annotate pod annotated-pod oncall=123412341
+
+*upsert annotation "oncall" with value "987654321" for pod "annotated-pod"
+k annotate pod annotated-pod oncall=987654321 --overwrite
+
+*delete annotation "oncall" from pod "annotated-pod"
+k annotate pod annotated-pod oncall-
+
+*create deployment "my-depl" using nginx image with 3 replicas
+k create deployment my-depl --image=nginx --replicas=3
+
+*get rollout history for deployment "my-depl"
+k rollout history deploy my-depl

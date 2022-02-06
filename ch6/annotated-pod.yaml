@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: annotated-pod
+  annotations:
+    commit: asdf1234
+    author: me,lol
+    branch: dtjones/bugfix
+spec:
+  containers:
+  - name: app
+    image: nginx
