@@ -152,3 +152,25 @@ k create job counter --image=nginx -- /bin/bash -c 'counter=0; while [ $counter 
 
 *create cronjob "google-ping" which executes curl google.com every 2 minutes using nginx image
 k create cj google-ping --image=nginx --schedule='*/2 * * * *' -- /bin/sh -c 'curl google.com'
+
+*create service "nginx-svc" as nodeport, with given port mapping
+k create svc nodeport nginx-svc --tcp=80:80 
+
+*create pod "nginx" using image nginx exposing port 80, creates clusterip service automatically
+k run nginx --image=nginx --restart=Never --port=80 --expose
+
+*create service for deployment "my-depl" with target-port:port "80:80"
+k expose deploy my-depl --target-port=80 --port=80
+
+*create a pod "tmp" and have it execute wget on given IP.  Useful for testing ClusterIP services
+k run tmp --image=busybox --restart=Never -- /bin/sh -c 'wget -O- 10.111.210.135'
+
+*exposes the Kubernetes API server on localhost:9999
+k proxy --port=9999
+
+*when combined with proxy command, allows communication using ClusterIP service from outside the cluster
+curl -L 127.0.0.1:9999/api/v1/namespaces/default/services/nginx/proxy
+
+*contact pod "nginx" through its NodePort service
+curl localhost:30943
+
