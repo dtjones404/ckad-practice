@@ -1,0 +1,14 @@
+k run frontend --image=nginx -l tier=frontend,app=nginx --port=80 --expose
+k run backend --image=nginx -l tier=backend,app=nginx --port=80 --expose
+k create svc clusterip nginx-service --tcp 9000:80
+k edit svc nginx-service
+k describe svc nginx-service
+k run tmp --image=nginx -- /bin/sh -c 'curl 10.108.155.244:9000' 
+k logs tmp
+k edit svc nginx-service
+k delete pod tmp
+k run tmp --image=nginx -- /bin/sh -c 'curl 10.108.155.244:9000'
+k logs tmp
+k create svc nodeport nginx --tcp 80:80
+k edit svc nginx
+curl localhost:30144
