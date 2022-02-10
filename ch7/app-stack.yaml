@@ -1,0 +1,45 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: frontend
+  namespace: app-stack
+  labels:
+    app: todo
+    tier: frontend
+spec:
+  containers:
+  - name: frontend
+    image: nginx
+
+---
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: backend
+  namespace: app-stack
+  labels:
+    app: todo
+    tier: backend
+spec:
+  containers:
+  - name: backend
+    image: nginx
+
+---
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: database
+  namespace: app-stack
+  labels:
+    app: todo
+    tier: database
+spec:
+  containers:
+  - name: database
+    image: mysql
+    env:
+    - name: MYSQL_ROOT_PASSWORD
+      value: example
