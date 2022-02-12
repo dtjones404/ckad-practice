@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: shared-volume
+spec:
+  containers:
+  - name: c1
+    image: alpine:3.12.0
+    command:
+    - /bin/sh
+    - -c
+    - 'while true; do sleep 60; done'
+    volumeMounts:
+    - name: shared-volume
+      mountPath: /etc/a
+  - name: c2
+    image: alpine:3.12.0
+    command:
+    - /bin/sh
+    - -c
+    - 'while true; do sleep 60; done'
+    volumeMounts:
+    - name: shared-volume
+      mountPath: /etc/b
+  volumes:
+  - name: shared-volume
+    emptyDir: {}

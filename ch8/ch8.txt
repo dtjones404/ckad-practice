@@ -1,0 +1,22 @@
+k create -f shared-volume.yaml
+k exec shared-volume -it -c c1 -- /bin/sh
+cd /etc/a
+mkdir data
+cd data
+echo "Hello World" >> hello.txt
+exit
+k create -f logs-pv.yaml
+k describe pv logs-pv
+k create -f logs-pvc.yaml
+k get pvc
+k create -f pod-with-pvc.yaml 
+k describe pod pod-with-pvc
+k describe pvc logs-pvc
+k exec pod-with-pvc -it -- /bin/sh
+cd /var/logs/nginx
+echo "BANANAS IN PAJAMAS" >> my-nginx.log
+exit
+k delete pod pod-with-pvc
+k create -f pod-with-pvc.yaml
+cd /var/logs/nginx
+cat my-nginx.log
