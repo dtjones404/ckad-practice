@@ -183,3 +183,5 @@ curl -L 127.0.0.1:9999/api/v1/namespaces/default/services/nginx/proxy
 *contact pod "nginx" through its NodePort service
 curl localhost:30943
 
+*copy file '/etc/passwd' from pod 'busybox' to local directory
+k cp busybox:/etc/passwd ./passwd
