@@ -16,6 +16,9 @@ k describe pods
 *get summary info about all objects in namespace
 k get all
 
+*get summary info about all objects in all namespaces
+k get all -A
+
 *get describe results, 5 lines around grep match
 k describe pods | grep -C 5 name=myapp
 
@@ -47,6 +50,9 @@ k run mypod --image=busybox -o yaml --dry-run=client --restart=Never
 
 *get list of all recent events in "ckad" namespace
 k get events -n=ckad
+
+*create resource quota 'myrq', with given hard limits
+k create quota myrq --hard=cpu=1,memory=1G,pods=2
 
 *create configmap "dbconfig", with given literal env pairs
 k create configmap db-config --from-literal=db=staging --from-literal=password=1234
@@ -117,6 +123,9 @@ k get pods -l 'env in (dev, prod)'
 *get pods which have label "env=(dev | prod)" AND label "tier=backend"
 k get pods -l 'env in (dev, prod)',tier=backend
 
+*get all pods, with extra column showing value of label 'app' for each
+k get pods -L app
+
 *add annotation "oncall=123412341" to pod "annotated-pod.  Raises error if annotation "oncall" already exists
 k annotate pod annotated-pod oncall=123412341
 
@@ -125,6 +134,9 @@ k annotate pod annotated-pod oncall=987654321 --overwrite
 
 *delete annotation "oncall" from pod "annotated-pod"
 k annotate pod annotated-pod oncall-
+
+*list all annotations for pod 'nginx'
+k annotate pod nginx --list
 
 *create deployment "my-depl" using nginx image with 3 replicas
 k create deployment my-depl --image=nginx --replicas=3
