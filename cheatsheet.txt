@@ -197,3 +197,6 @@ curl localhost:30943
 
 *copy file '/etc/passwd' from pod 'busybox' to local directory
 k cp busybox:/etc/passwd ./passwd
+
+*create ingress 'my-ingress', which routes traffic on /path to video-service:8080
+k create ing my-ingress --rule='/watch=video-service:8080' --annotation=nginx.ingress.kubernetes.io/rewrite-target=/
